@@ -16,12 +16,12 @@
       "id": 3,
       "title": "Go for a run",
       "description": "Run for 30 minutes in the park.",
-      "state": "complete"
+      "state": "incomplete"
     },
     {
       "id": 4,
       "title": "Read a book",
-      "description": "Read the first chapter of 'The Great Gatsby.'",
+      "description": "Read the first chapter of 'Rich Dad, Poor Dad'.'",
       "state": "incomplete"
     }
   ]

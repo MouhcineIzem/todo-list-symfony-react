@@ -11,29 +11,53 @@ const ComponentTodoList = () => {
             .then((response) => {
                 // console.log(response.data);
                 response.data;
-                // console.log(response.data.todos);
+                console.log(response.data.todos);
                 setTodos(response.data.todos);
             })
-            // .then((data) => {
-            //     // console.log(data);
-            //     setTodos(todos);
-            // })
             .catch((error) => {
                 console.log('Error fetching JSON data: ', error);
             })
     }, []);
 
+    const handleChange = (id) => {
+        const todoIndex = todos.findIndex((todo) => todo.id === id);
+
+        if (todoIndex !== -1) {
+            const updatedTodos = [...todos];
+
+            if (updatedTodos[todoIndex].state == 'complete') {
+                updatedTodos[todoIndex].state = 'incomplete'
+            } else {
+                updatedTodos[todoIndex].state = 'complete'
+            }
+            
+            if (updatedTodos[todoIndex].state == 'complete') {
+                const [completedTodo] = updatedTodos.splice(todoIndex, 1);
+                updatedTodos.push(completedTodo);
+            }
+
+            setTodos(updatedTodos);
+        }
+    }
+
     return (
         <div>
-            {/*<pre>{JSON.stringify(todos, null, 2)}</pre>*/}
+            <h1>Todo List</h1>
             <ul>
                 {todos.map((todo) => (
-                    <li key={todo.id}>
-                        {todo.title}
+                    <li key={todo.id}
+                        style={{ textDecoration: todo.state == 'complete' ? 'line-through' : 'none'}}
+                    >
+                        <input
+                            type="checkbox"
+                            checked={todo.state == 'complete'}
+                            onChange={() => handleChange(todo.id)}
+                        />
+                        {todo.title} - {todo.description}
                     </li>
                 ))}
             </ul>
         </div>
-    )
+    );
 }
 export default ComponentTodoList;
