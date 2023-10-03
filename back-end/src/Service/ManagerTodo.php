@@ -21,7 +21,8 @@ class ManagerTodo
     public function addTodo(array $todo): void {
         $todos = $this->getAllTodos();
 
-        $todos[] = $todo;
+//        $todos[] = $todo;
+        array_unshift($todos, $todo);
 
         file_put_contents($this->todoFile, json_encode($todos));
     }

@@ -12,7 +12,7 @@ const ComponentTodoList = () => {
             .then((response) => {
                 // console.log(response.data);
                 // response.data;
-                // console.log(response.data.todos);
+                console.log(response.data);
                 setTodos(response.data.todos);
             })
             .catch((error) => {
@@ -49,6 +49,7 @@ const ComponentTodoList = () => {
                     <li key={todo.id}
                         style={{ textDecoration: todo.state == 'complete' ? 'line-through' : 'none'}}
                     >
+                        {todo.title} - { todo.description}
                         <input
                             type="checkbox"
                             checked={todo.state == 'complete'}
